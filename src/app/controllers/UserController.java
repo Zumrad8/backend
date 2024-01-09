@@ -21,24 +21,41 @@ public class UserController {
         System.out.println("Введите пароль");
         String password = scanner.nextLine();
 
-        service.addUser(email, password);
+        try {
+            service.addUser(email, password);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+
     }
 
     public void getUserById() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите идентификатор пользователя: ");
-        int userId = scanner.nextInt();
-        User user = service.getUserById(userId);
 
-        if (user != null) {
-            System.out.println("Пользователь найден: " + user);
-        } else {
-            System.out.println("Вы ввели некорректный идентификатор");
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите идентификатор пользователя: ");
+            int userId = scanner.nextInt();
+            User user = service.getUserById(userId);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
+
+
+//        if (user != null) {
+//            System.out.println("Пользователь найден: " + user);
+//        } else {
+//            System.out.println("Вы ввели некорректный идентификатор");
+//        }
     }
 
     public void getAllUsers() {
-        System.out.println( service.getAllUsers());
+        try {
+            service.getAllUsers().forEach(x -> System.out.println(x));
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
 

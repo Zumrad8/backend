@@ -36,11 +36,23 @@ public class UserRepositoryMap implements UserRepository{
 
     @Override
     public void deleteById(int id) {
+        users.remove(id);
 
     }
 
     @Override
     public User findByEmail(String email) {
-        return null;
+
+//        for(User user : users.values()){
+//            if(email.equals(user.getEmail())){
+//                return user;
+//            }
+//        }
+//        return null;
+        return  users.values()
+                .stream()
+                .filter(x-> email.equals(x.getEmail()))
+                .findFirst()
+                .orElse(null);
     }
 }
